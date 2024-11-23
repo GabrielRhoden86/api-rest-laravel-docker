@@ -12,8 +12,12 @@ class FornecedorFactory extends Factory
     {
         return [
             'nome' => $this->faker->name,
-            'documento' => $this->faker->unique()->numerify('###########'), // CPF ou CNPJ fictício
-            'tipo_documento' => $this->faker->randomElement(['CNPJ', 'CPF']),
+            'documento' => $this->faker->randomElement([
+                $this->faker->numerify('##.###.###/0001-##'), //CNPJ
+                $this->faker->numerify('###.###.###-##'), // CPF
+            ]),
+
+            'tipo_documento' => 'CNPJ',
             'contato' => $this->faker->phoneNumber,
             'endereco' => $this->faker->address,
         ];
