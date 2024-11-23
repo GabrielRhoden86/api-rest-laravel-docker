@@ -3,23 +3,35 @@ namespace App\Repositories\Fornecedores;
 use App\Models\Fornecedor;
 use App\Repositories\Interfaces\FornecedoresRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-
-
 
 class FornecedorRepository implements FornecedoresRepositoryInterface
 {
-    public function create(array $data): Fornecedor
+    public function create(array $data): String
     {
         $fornecedor = new Fornecedor();
+        $fornecedor->nome = $data['nome'];
+        $fornecedor->documento = $data['documento'];
+        $fornecedor->tipo_documento = $data['tipo_documento'];
+        $fornecedor->contato = $data['contato'];
+        //Campo endereco obrigatório pode ser retornar null
+        $fornecedor->endereco = $data['endereco'] ?? null;
         $fornecedor->save();
-        return $fornecedor;
+        return $fornecedor->nome;
     }
 
     public function update(Fornecedor $fornecedor, array $data): Fornecedor
     {
+        $fornecedor = new Fornecedor();
+        $fornecedor->nome = $data['nome'];
+        $fornecedor->documento = $data['documento'];
+        $fornecedor->tipo_documento = $data['tipo_documento'];
+        $fornecedor->contato = $data['contato'];
+        //Campo endereco obrigatório pode ser retornar null
+        $fornecedor->endereco = $data['endereco'];
         $fornecedor->save();
-        return $fornecedor;
+        return  $fornecedor->nome ;
     }
 
     public function delete(Fornecedor $fornecedor): bool
@@ -28,7 +40,7 @@ class FornecedorRepository implements FornecedoresRepositoryInterface
         return true;
     }
 
-    public function all(array $params = []): LengthAwarePaginator
+    public function getAll(array $params = []): LengthAwarePaginator
     {
         // Filtros da classe LengthAwarePaginator(Laravel)
         $orderBy = $params['orderBy'] ?? 'id';
@@ -56,8 +68,6 @@ class FornecedorRepository implements FornecedoresRepositoryInterface
         }
         return $query->orderBy($orderBy, $sort)->paginate($perPage);
     }
-
-
 
     public function findByCnpjCpf($cnpjCpf): ?Fornecedor
     {

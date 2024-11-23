@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
     public function up(): void
     {
         Schema::create('fornecedores', function (Blueprint $table) {
@@ -15,7 +14,7 @@ return new class extends Migration
             $table->string('documento')->unique();
             $table->string('tipo_documento'); // CNPJ ou CPF
             $table->string('contato');
-            $table->string('endereco');
+            $table->string('endereco')->nullable();
             $table->timestamps();
         });
     }
