@@ -43,7 +43,7 @@ class FornecedorRequest extends FormRequest
         ];
     }
 
-    //Caso um parâmetro seja inválido no endpoint, adiciona um erro
+    //Garante somente parâmetros válidos no endpoint, adiciona um erro
     protected function withValidator($validator)
     {
         $validator->after(function ($validator) {

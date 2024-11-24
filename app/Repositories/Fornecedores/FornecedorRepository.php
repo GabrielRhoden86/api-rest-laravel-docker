@@ -28,8 +28,7 @@ class FornecedorRepository implements FornecedoresRepositoryInterface
             throw new \RuntimeException('Erro ao criar um novo fornecedor. Tente novamente mais tarde.');
         }
     }
-
-    public function getAll(array $params = []): LengthAwarePaginator
+    public function read(array $params = []): LengthAwarePaginator
     {
         try {
             // Filtros da classe LengthAwarePaginator(Laravel)
@@ -60,13 +59,13 @@ class FornecedorRepository implements FornecedoresRepositoryInterface
             throw new \RuntimeException('Erro ao atualizar fornecedor');
         }
     }
-
     public function update(Fornecedor $fornecedor, array $data): Fornecedor
     {
         try {
-            $fornecedor->update($data);
+            $fornecedor->fill($data);
+            $fornecedor->save();
             return $fornecedor;
-         } catch (\RuntimeException $e) {
+        } catch (\RuntimeException $e) {
             Log::error('Erro ao atualizar fornecedor: ' . $e->getMessage(), [
                 'fornecedor_id' => $fornecedor->id ?? null,
                 'dados_fornecidos' => $data
@@ -74,14 +73,15 @@ class FornecedorRepository implements FornecedoresRepositoryInterface
             throw new \RuntimeException('Erro ao atualizar fornecedor.');
         }
     }
-
     public function destroy(Fornecedor $fornecedor): Fornecedor
     {
         try {
             $fornecedor->delete();
             return $fornecedor;
         } catch (\RuntimeException $e) {
-            Log::error('Erro ao excluir fornecedor: ' . $e->getMessage(), ['fornecedor' => $fornecedor->nome]);
+            Log::error('Erro ao excluir fornecedor: ' . $e->getMessage(), [
+                'fornecedor_id' => $fornecedor->id ?? null,
+            ]);
             throw new \RuntimeException('Erro ao excluir fornecedor.');
         }
     }

@@ -1,4 +1,4 @@
-## Teste para Desenvolvedor PHP/Laravel
+### Teste para Desenvolvedor PHP/Laravel
 
 Bem-vindo ao teste de desenvolvimento para a posição de Desenvolvedor PHP/Laravel. 
 
