@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Integration;
+namespace Tests\Unit;
 
 use Tests\TestCase;
 use App\Repositories\BuscaDados\BuscaCnpjRepository;
