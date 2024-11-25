@@ -7,9 +7,9 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 interface FornecedoresRepositoryInterface
 {
-    public function create(array $data): Fornecedor;
-    public function read(array $params = []): LengthAwarePaginator;
-    public function update(Fornecedor $fornecedor, array $data): Fornecedor;
-    public function destroy(Fornecedor $fornecedor): Fornecedor;
+    public function generate(array $data): Fornecedor;
+    public function getAll(array $params = []): LengthAwarePaginator;
+    public function modify(Fornecedor $fornecedor, array $data): Fornecedor;
+    public function remove(Fornecedor $fornecedor): Fornecedor;
 
 }

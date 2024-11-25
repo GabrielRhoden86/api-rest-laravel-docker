@@ -43,16 +43,4 @@ class FornecedorRequest extends FormRequest
         ];
     }
 
-    //Garante somente parâmetros válidos no endpoint, adiciona um erro
-    protected function withValidator($validator)
-    {
-        $validator->after(function ($validator) {
-            $validParams = array_keys($this->rules());
-            foreach ($this->all() as $param) {
-                if (!in_array($param, $validParams)) {
-                    $validator->errors()->add($param, 'Utilize somente os parâmetros válidos: ' . implode(', ', $validParams));
-                }
-            }
-        });
-    }
 }

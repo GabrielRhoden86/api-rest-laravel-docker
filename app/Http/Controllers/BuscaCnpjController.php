@@ -13,7 +13,7 @@ class BuscaCnpjController extends Controller
     }
     public function buscaCnpj(BuscaCnpjRequest $request, $cnpj)
     {    $request->validated();
-        $data = $this->cnpj->read($cnpj);
+        $data = $this->cnpj->buscaCnpj($cnpj);
         return response()->json($data, 200);
     }
 }

@@ -5,5 +5,5 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 interface BuscaCnpjRepositoryInterface
 {
-    public function read($cnpj);
+    public function buscaCnpj($cnpj);
 }

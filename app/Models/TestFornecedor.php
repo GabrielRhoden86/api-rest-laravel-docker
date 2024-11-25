@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Fornecedor extends Model
+class TestFornecedor extends Model
 {
     use HasFactory;
 
-    /**
+       /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $table = 'fornecedores';
+    protected $table = 'test_fornecedores';
 
     protected $fillable = [
         'nome',
@@ -33,4 +33,5 @@ class Fornecedor extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
 }

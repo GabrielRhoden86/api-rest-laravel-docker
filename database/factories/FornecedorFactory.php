@@ -10,7 +10,6 @@ class FornecedorFactory extends Factory
 
     public function definition()
     {
-        // Definição padrão pode ser neutra ou um dos dois casos, por exemplo, CPF:
         return $this->cpfDefinition();
     }
 
@@ -19,8 +18,8 @@ class FornecedorFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'documento' => $this->faker->numerify('###.###.###-##'), // Gerar CPF
-                'tipo_documento' => 'CPF', // Definir tipo como CPF
+                'documento' => $this->faker->numerify('###.###.###-##'),
+                'tipo_documento' => 'CPF',
             ];
         });
     }
@@ -30,8 +29,8 @@ class FornecedorFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'documento' => $this->faker->numerify('##.###.###/0001-##'), // Gerar CNPJ
-                'tipo_documento' => 'CNPJ', // Definir tipo como CNPJ
+                'documento' => $this->faker->numerify('##.###.###/0001-##'),
+                'tipo_documento' => 'CNPJ',
             ];
         });
     }

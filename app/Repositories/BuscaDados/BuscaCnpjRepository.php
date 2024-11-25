@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
 class BuscaCnpjRepository implements BuscaCnpjRepositoryInterface
 {
-    public function read($cnpj)
+    public function buscaCnpj($cnpj)
     {
         try {
             $response = Http::get("https://brasilapi.com.br/api/cnpj/v1/{$cnpj}");

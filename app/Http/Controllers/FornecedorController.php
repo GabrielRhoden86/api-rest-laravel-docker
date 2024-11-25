@@ -20,7 +20,7 @@ class FornecedorController extends Controller
     public function create(FornecedorRequestCreate $request): JsonResponse
     {
         $validatedData = $request->validated();
-        $result = $this->fornecedorRepository->create($validatedData);
+        $result = $this->fornecedorRepository->generate($validatedData);
         return response()->json([
             "message" => "Fornecedor '{$result->nome}' registrado com sucesso!",
         ], 201);
@@ -28,7 +28,7 @@ class FornecedorController extends Controller
 
     public function read(FornecedorRequest $request): JsonResponse {
         $params = $request->validated();
-        $fornecedores = $this->fornecedorRepository->read($params);
+        $fornecedores = $this->fornecedorRepository->getAll($params);
         if ($fornecedores->isEmpty()) {
             return response()->json([ "message" => "Nenhum fornecedor encontrado.", ], 200);
          }
@@ -39,19 +39,18 @@ class FornecedorController extends Controller
     {
         $fornecedor = Fornecedor::findOrFail($id);
         $validatedData = $request->validated();
-        $updatedFornecedor = $this->fornecedorRepository->update($fornecedor, $validatedData);
+        $updatedFornecedor = $this->fornecedorRepository->modify($fornecedor, $validatedData);
         return response()->json([
             "message" => "Dados do fornecedor '{$updatedFornecedor->nome}' atualizados com sucesso!"
         ], 200);
     }
-
-    public function destroy($id): JsonResponse
+    public function deleteItem($id): JsonResponse
     {
-        $fornecedor = Fornecedor::findOrFail($id);
-        $fornecedorExcluido = $this->fornecedorRepository->destroy($fornecedor);
-        return response()->json([
-            "message" => "Registro do fornecedor '{$fornecedorExcluido->nome}' excluído com sucesso!"
-        ], 200);
-    }
+            $fornecedor = Fornecedor::findOrFail($id);
+            $this->fornecedorRepository->remove($fornecedor);
+            return response()->json([
+                "message" => "Fornecedor excluído com sucesso."
+            ], 200);
 
+    }
 }
