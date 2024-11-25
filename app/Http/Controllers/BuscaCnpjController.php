@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Interfaces\BuscaCnpjRepositoryInterface;
-use Illuminate\Http\Request;
-
+use App\Http\Requests\BuscaCnpjRequest;
 class BuscaCnpjController extends Controller
 {
     protected $cnpj;
@@ -12,8 +11,8 @@ class BuscaCnpjController extends Controller
     {
         $this->cnpj = $cnpj;
     }
-    public function buscaCnpj($cnpj)
-    {
+    public function buscaCnpj(BuscaCnpjRequest $request, $cnpj)
+    {    $request->validated();
         $data = $this->cnpj->read($cnpj);
         return response()->json($data, 200);
     }

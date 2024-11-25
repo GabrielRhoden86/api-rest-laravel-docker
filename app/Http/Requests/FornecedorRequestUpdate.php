@@ -13,7 +13,7 @@ class FornecedorRequestUpdate extends FormRequest
     public function rules(): array
     {
         return [
-            'nome' => 'nullable|string|max:255',
+            'nome' => 'nullable|string|max:40',
             'documento' => [
                 'nullable',
                 'string',

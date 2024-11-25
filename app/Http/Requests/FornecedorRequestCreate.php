@@ -15,7 +15,7 @@ class FornecedorRequestCreate extends FormRequest
     public function rules(): array
     {
         return [
-            'nome' => 'required|string|max:255',
+            'nome' => 'required|string|max:40',
             'documento' => [
                 'required',
                 'string',
