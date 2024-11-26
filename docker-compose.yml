@@ -9,7 +9,7 @@ services:
         volumes:
             - ./mysql-data:/var/lib/mysql
         ports:
-            - "3307:3306"  # Porta 3307 no host aponta para a 3306 no contêiner
+            - "3306:3306"
 
     backend:
         build: .

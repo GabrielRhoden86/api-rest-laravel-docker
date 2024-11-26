@@ -96,7 +96,7 @@ app/
 
 <h4><strong>Incluindo filtros para pesquisa:</strong></h4>
 
-<pre><code>http://127.0.0.1:8000/api/fornecedores?nome=a&tipo_documento=CNPJ&orderBy=nome&sort=desc&perPage=10</code></pre>
+<pre><code>http://127.0.0.1:8000/api/fornecedores?nome=a&tipo_documento=CNPJ&orderBy=nome&sort=desc&perPage=10&page=3</code></pre>
 
 <ul>
   <li><strong>nome</strong></li>
@@ -104,6 +104,7 @@ app/
   <li><strong>tipo_documento</strong></li>
   <li><strong>orderBy</strong> (ordenar por)</li>
   <li><strong>sort</strong> (ascendente ou descendente)</li>
+  <li><strong>page</strong> paginação ex page=3</li>
   <li><strong>perPage</strong> (quantidade de registros por página)</li>
 </ul>
 
