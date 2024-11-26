@@ -18,7 +18,13 @@ RUN sed -i 's!/var/www/html!/var/www/html/teste-dev-php/public!g' /etc/apache2/s
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+# Copiar os arquivos do projeto para o contêiner
 COPY . /var/www/html/teste-dev-php/
+
+# Mudar para o diretório do projeto
+WORKDIR /var/www/html/teste-dev-php/
+
+# Instalar dependências do Composer
 RUN composer install
 
 # Garantir que os diretórios existam antes de aplicar chown
