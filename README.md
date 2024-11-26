@@ -60,9 +60,8 @@ app/
 
 
 <small>Talvez seja necessário executar o comando abaixo para garantir que o servidor web possa acessar o diretório storage:</small>
-<code>
  <pre> chown -R www-data:www-data /var/www/html/teste-dev-php/storage </pre>
-</code>
+
 
 <h2>Testando API</h2>
 <small>Validações realizadas via Postman.</small>
