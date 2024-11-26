@@ -1,8 +1,6 @@
-
 FROM php:8.2.5-apache
 
-WORKDIR /var/www/html/teste-dev-php
-
+# Atualizar os pacotes e instalar dependências
 RUN apt-get update && \
     apt-get install -y \
     git \
@@ -10,7 +8,8 @@ RUN apt-get update && \
     libpng-dev \
     libicu-dev \
     libpq-dev \
-    libmagickwand-dev
+    libmagickwand-dev \
+    nano  # Adiciona a instalação do nano
 
 # Instalação de extensões PHP
 RUN docker-php-ext-install pdo_mysql zip exif pcntl bcmath gd
