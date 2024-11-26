@@ -17,7 +17,7 @@ services:
         container_name: backend
         restart: unless-stopped
         volumes:
-            - .:/var/www/html
+            - .:/var/www/html/teste-dev-php
 
         environment:
             DB_HOST: mysql-db
