@@ -15,7 +15,7 @@ class FornecedorRepositoryTest extends TestCase
         // Dados simulados
         $data = [
             'nome' => 'Fornecedor',
-            'documento' => '123.456.789-20',
+            'documento' => '123.456.789-32',  //alterar cpf a cada teste (unique key)
             'tipo_documento' => 'CPF',
             'contato' => '41-9916-9014',
             'endereco' => 'Rua Leonardo Javorski 105',
@@ -33,7 +33,7 @@ class FornecedorRepositoryTest extends TestCase
         // Verifica se o fornecedor foi salvo no banco de dados
         $this->assertDatabaseHas('fornecedores', [
             'nome' => 'Fornecedor',
-            'documento' => '123.456.789-20',
+            'documento' => '123.456.789-32',  //alterar cpf a cada teste (unique key)
             'tipo_documento' => 'CPF',
             'contato' => '41-9916-9014',
             'endereco' => 'Rua Leonardo Javorski 105',
@@ -62,7 +62,6 @@ class FornecedorRepositoryTest extends TestCase
     /** @test */
     public function test_modify()
     {
-        // Supondo que já exista um fornecedor com ID 3 no banco de dados
         $fornecedor = Fornecedor::find(3);
         // Verifica se o fornecedor existe
         $this->assertNotNull($fornecedor, 'Fornecedor com ID 3 não encontrado.');
@@ -99,16 +98,14 @@ class FornecedorRepositoryTest extends TestCase
     /** @test */
     public function test_remove()
     {
-        // Supondo que já exista um fornecedor com ID 4 no banco de dados
-        $fornecedor = Fornecedor::find(25);
+        //alterar id a cada teste
+        $fornecedor = Fornecedor::find(32);
         $this->assertNotNull($fornecedor, 'Fornecedor com ID 3 não encontrado.');
         $repository = new FornecedorRepository();
         $removedFornecedor = $repository->remove($fornecedor);
 
-        // Verifica se o fornecedor foi removido corretamente
         $this->assertInstanceOf(Fornecedor::class, $removedFornecedor);
         $this->assertEquals($fornecedor->id, $removedFornecedor->id);
-        // Verifica se o fornecedor não existe mais no banco de dados
         $this->assertDatabaseMissing('fornecedores', [
             'id' => $fornecedor->id,
         ]);

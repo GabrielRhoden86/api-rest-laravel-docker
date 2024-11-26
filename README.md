@@ -59,7 +59,7 @@ app/
 <p>Isso vai popular o banco de dados com registros de fornecedores utilizando os seeders definidos no projeto.</p>
 
 
-<small>Talvez seja necessário executar o comando abaixo para garantir que o servidor web possa acessar o diretório storage:</small>
+<small>* Talvez seja necessário executar o comando abaixo para garantir que o servidor web possa acessar o diretório storage:</small>
  <pre> chown -R www-data:www-data /var/www/html/teste-dev-php/storage </pre>
 
 
@@ -76,7 +76,8 @@ app/
     "nome": "Gabriel Rhoden",
     "tipo_documento": "CPF",
     "contato": "41 991169014",
-    "documento": "064.780.799-54"
+    "documento": "064.780.799-29",
+    "endereco": "Alto da XV"
 }
 </code></pre>
 
@@ -168,14 +169,14 @@ Route::middleware(['throttle:60,1'])->group(function () {
 </code></pre>
 <h2>Testes Unitários (PHPUnit)</h2>
 
-<p>Para realizar os testes unitários de todas os método, utilize o comando abaixo:</p>
+<p>Para realizar os testes unitários de todos os método, utilize o comando abaixo:</p>
 <pre><code>
- php artisan test --filter FornecedorRepositoryTest
+  php artisan test --testsuite=Unit
 </code></pre>
 
-<p>Para realizar os testes unitários por método:</p>
+<p>Para realizar os testes por método:</p>
 <pre><code>
- php artisan test --filter=FornecedorRepositoryTest::test_get_all
+  php artisan test --filter "FornecedorRepositoryTest::test_get_all" --testsuite=Unit
 </code></pre>
 
 <small>* No método 'test_remove', é necessário ajustar o ID em cada teste de exclusão para evitar erros devido à inexistência do ID. </small>
