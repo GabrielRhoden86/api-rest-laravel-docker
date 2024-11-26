@@ -9,7 +9,7 @@ RUN apt-get update && \
     libicu-dev \
     libpq-dev \
     libmagickwand-dev \
-    nano  # Adiciona a instalação do nano
+    nano
 
 # Instalação de extensões PHP
 RUN docker-php-ext-install pdo_mysql zip exif pcntl bcmath gd
