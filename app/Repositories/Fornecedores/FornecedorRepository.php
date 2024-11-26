@@ -57,7 +57,7 @@ class FornecedorRepository implements FornecedoresRepositoryInterface
             return $query->orderBy($orderBy, $sort)->paginate($perPage);
         } catch (\RuntimeException $e) {
             Log::error('Erro ao listar fornecedores: ' . $e->getMessage());
-            throw new \RuntimeException('Erro ao atualizar fornecedor');
+            throw new \RuntimeException('Erro ao listar fornecedores');
         }
     }
     public function modify(Fornecedor $fornecedor, array $data): Fornecedor
