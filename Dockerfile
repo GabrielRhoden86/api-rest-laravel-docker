@@ -34,8 +34,6 @@ RUN mkdir -p /var/www/html/teste-dev-php/storage/logs/ \
 # Adiciona os comandos solicitados
 RUN cp .env.example .env
 RUN php artisan key:generate
-RUN php artisan migrate
-RUN php artisan db:seed
 RUN php artisan optimize
 
 EXPOSE 80
