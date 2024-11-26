@@ -26,6 +26,16 @@ app/
 │   │   └── BuscaDadosRepositoryInterface.php
 </pre>
 
+<h2>Configuração .ENV:</h2>
+<pre><code>
+ DB_CONNECTION=mysql
+ DB_HOST=mysql-db
+ DB_PORT=3306
+ DB_DATABASE=controle_fornecedor
+ DB_USERNAME=root
+ DB_PASSWORD=root
+</code></pre>
+
 <h2>Deploy via Docker</h2>
 
 <p>Após baixar o projeto do repositório (GitHub), execute os seguintes comandos para configurar o ambiente Docker:</p>
@@ -47,6 +57,12 @@ app/
 <pre><code>php artisan db:seed</code></pre>
 
 <p>Isso vai popular o banco de dados com registros de fornecedores utilizando os seeders definidos no projeto.</p>
+
+
+<small>Talvez seja necessário executar o comando abaixo para garantir que o servidor web possa acessar o diretório storage:</small>
+<code>
+ <pre> chown -R www-data:www-data /var/www/html/teste-dev-php/storage </pre>
+</code>
 
 <h2>Testando API</h2>
 <small>Validações realizadas via Postman.</small>
@@ -152,6 +168,19 @@ Route::middleware(['throttle:60,1'])->group(function () {
 
 </code></pre>
 <h2>Testes Unitários (PHPUnit)</h2>
+
+<p>Para realizar os testes unitários de todas os método, utilize o comando abaixo:</p>
+<pre><code>
+ php artisan test --filter FornecedorRepositoryTest
+</code></pre>
+
+<p>Para realizar os testes unitários por método:</p>
+<pre><code>
+ php artisan test --filter=FornecedorRepositoryTest::test_get_all
+</code></pre>
+
+<small>* No método 'test_remove', é necessário ajustar o ID em cada teste de exclusão para evitar erros devido à inexistência do ID. </small>
+<small>* No método 'test_generate', assegure-se de gerar um novo número de documento a cada execução.</small>
 
 <h3><strong>test_generate:</strong></h3>
 <p>Verifica se a criação de um fornecedor funciona corretamente. Confirma se o fornecedor é salvo com os dados fornecidos e se existe no banco.</p>
