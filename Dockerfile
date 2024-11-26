@@ -1,6 +1,5 @@
 FROM php:8.2.5-apache
 
-# Atualizar os pacotes e instalar dependências
 RUN apt-get update && \
     apt-get install -y \
     git \
@@ -11,23 +10,18 @@ RUN apt-get update && \
     libmagickwand-dev \
     nano
 
-# Instalação de extensões PHP
 RUN docker-php-ext-install pdo_mysql zip exif pcntl bcmath gd
 RUN a2enmod rewrite
 RUN sed -i 's!/var/www/html!/var/www/html/teste-dev-php/public!g' /etc/apache2/sites-available/000-default.conf
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Copiar os arquivos do projeto para o contêiner
 COPY . /var/www/html/teste-dev-php/
 
-# Mudar para o diretório do projeto
 WORKDIR /var/www/html/teste-dev-php/
 
-# Instalar dependências do Composer
 RUN composer install
 
-# Garantir que os diretórios existam antes de aplicar chown
 RUN mkdir -p /var/www/html/teste-dev-php/storage/logs/ \
     && mkdir -p /var/www/html/teste-dev-php/framework/sessions/ \
     && mkdir -p /var/www/html/teste-dev-php/storage/framework/views/ \
@@ -36,7 +30,6 @@ RUN mkdir -p /var/www/html/teste-dev-php/storage/logs/ \
     && chown -R www-data:www-data /var/www/html/teste-dev-php/storage/framework/views/ \
     && chown -R www-data:www-data /var/www/html/teste-dev-php/storage
 
-# Adiciona os comandos solicitados
 RUN cp .env.example .env
 RUN php artisan key:generate
 RUN php artisan optimize
