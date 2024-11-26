@@ -147,4 +147,21 @@ Route::middleware(['throttle:60,1'])->group(function () {
     Route::delete('/fornecedores/{id}', [FornecedorController::class, 'deleteItem']);
     Route::get('/consulta/{cnpj}', [BuscaCnpjController::class, 'buscaCnpj']);
 });
+
+
 </code></pre>
+<h2>Testes Unitários (PHPUnit)</h2>
+
+<h3><strong>test_generate:</strong></h3>
+<p>Verifica se a criação de um fornecedor funciona corretamente. Confirma se o fornecedor é salvo com os dados fornecidos e se existe no banco.</p>
+
+<h3><strong>test_get_all:</strong></h3>
+<p>Testa a listagem de fornecedores com paginação e filtros. Verifica se os resultados são paginados e contêm o fornecedor esperado.</p>
+
+<h3><strong>test_modify:</strong></h3>
+<p>Testa a atualização de um fornecedor existente. Verifica se os dados são atualizados corretamente no banco de dados.</p>
+
+<h3><strong>test_remove:</strong></h3>
+<p>Testa a remoção de um fornecedor. Verifica se o fornecedor foi removido corretamente do banco de dados.</p>
+
+<p>Esses testes garantem que as operações de CRUD (Criar, Ler, Atualizar, Deletar) estão funcionando como esperado.</p>
