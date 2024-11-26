@@ -1,5 +1,4 @@
 services:
-
     mysql-db:
         image: mysql:5.7
         restart: unless-stopped
@@ -11,7 +10,6 @@ services:
             - ./mysql-data:/var/lib/mysql
         ports:
             - 3306:3306
-
     backend:
         build: .
         container_name: backend
