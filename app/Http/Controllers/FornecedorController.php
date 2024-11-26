@@ -26,7 +26,7 @@ class FornecedorController extends Controller
         ], 201);
     }
 
-    public function read(FornecedorRequest $request): JsonResponse {
+        public function read(FornecedorRequest $request): JsonResponse {
         $params = $request->validated();
         $fornecedores = $this->fornecedorRepository->getAll($params);
         if ($fornecedores->isEmpty()) {
