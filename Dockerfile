@@ -1,6 +1,8 @@
 FROM php:8.2.5-apache
 WORKDIR /var/www/html
 
+ARG WWWGROUP
+
 RUN apt-get update && \
     apt-get install -y \
     git \
@@ -9,7 +11,8 @@ RUN apt-get update && \
     libicu-dev \
     libpq-dev \
     libmagickwand-dev
-# RUN pecl install imagick && docker-php-ext-enable imagick
+
+# Instalação de extensões PHP
 RUN docker-php-ext-install pdo_mysql zip exif pcntl bcmath gd
 RUN a2enmod rewrite
 RUN sed -i 's!/var/www/html!/var/www/html/teste-dev-php/public!g' /etc/apache2/sites-available/000-default.conf
@@ -18,11 +21,14 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 COPY . /var/www/html
 RUN composer install --no-dev --prefer-dist --no-scripts --no-progress --no-suggest
 
-RUN chown -R www-data:www-data /var/www/html/teste-dev-php/storage/logs/
-RUN chown -R www-data:www-data /var/www/teste-dev-php/framework/sessions/
-RUN chown -R www-data:www-data /var/www/teste-dev-php/storage/framework/views/
-
-RUN chown -R www-data:www-data /var/www/html
+# Garantir que os diretórios existam antes de aplicar chown
+RUN mkdir -p /var/www/html/teste-dev-php/storage/logs/ \
+    && mkdir -p /var/www/html/teste-dev-php/framework/sessions/ \
+    && mkdir -p /var/www/html/teste-dev-php/storage/framework/views/ \
+    && chown -R www-data:www-data /var/www/html/teste-dev-php/storage/logs/ \
+    && chown -R www-data:www-data /var/www/html/teste-dev-php/framework/sessions/ \
+    && chown -R www-data:www-data /var/www/html/teste-dev-php/storage/framework/views/ \
+    && chown -R www-data:www-data /var/www/html/teste-dev-php/storage
 
 EXPOSE 80
 CMD ["apache2-foreground"]
