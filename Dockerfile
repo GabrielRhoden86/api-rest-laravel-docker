@@ -1,7 +1,6 @@
 
 FROM php:8.2.5-apache
 
-
 WORKDIR /var/www/html/teste-dev-php
 
 RUN apt-get update && \
@@ -33,11 +32,11 @@ RUN mkdir -p /var/www/html/teste-dev-php/storage/logs/ \
     && chown -R www-data:www-data /var/www/html/teste-dev-php/storage
 
 # Adiciona os comandos solicitados
-RUN cp .env.example .env && \
-    php artisan key:generate && \
-    php artisan migrate && \
-    php artisan db:seed && \
-    php artisan optimize
+RUN cp .env.example .env
+RUN php artisan key:generate
+RUN php artisan migrate
+RUN php artisan db:seed
+RUN php artisan optimize
 
 EXPOSE 80
 CMD ["apache2-foreground"]
