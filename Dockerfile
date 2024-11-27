@@ -17,7 +17,6 @@ RUN sed -i 's!/var/www/html!/var/www/html/teste-dev-php/public!g' /etc/apache2/s
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 COPY . /var/www/html/teste-dev-php/
-
 WORKDIR /var/www/html/teste-dev-php/
 
 RUN composer install

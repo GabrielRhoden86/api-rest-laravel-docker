@@ -1,6 +1,6 @@
 services:
     mysql-db:
-        image: mysql:5.7
+        image: mysql:8.0
         restart: unless-stopped
         container_name: mysql-db
         environment:
@@ -9,22 +9,29 @@ services:
         volumes:
             - ./mysql-data:/var/lib/mysql
         ports:
-            - "3306:3306"
+            - "3307:3306"
+        healthcheck:
+            test:
+                - CMD
+                - mysqladmin
+                - ping
+                - '-proot'
+            retries: 3
+            timeout: 5s
 
     backend:
         build: .
         container_name: backend
         restart: unless-stopped
         volumes:
-            - .:/var/www/html/teste-dev-php
+            - .:/var/www/html/teste-dev-php/storage
         environment:
-            DB_HOST: mysql-db
-            DB_PORT: 3306
-            DB_DATABASE: controle_fornecedor
-            DB_USERNAME: root
-            DB_PASSWORD: root
-            DB_CONNECTION: mysql
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ROOT_HOST: '%'    # permite qual host acessar o db
+            MYSQL_DATABASE: '${DB_DATABASE}'
+            MYSQL_USER: '${DB_USERNAME}'
+            MYSQL_PASSWORD: '${DB_PASSWORD}'
         depends_on:
             - mysql-db
         ports:
-            - 8000:80
+            - "8000:80"
