@@ -26,11 +26,11 @@ services:
         volumes:
             - .:/var/www/html/teste-dev-php/storage
         environment:
-            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
-            MYSQL_ROOT_HOST: '%'    # permite qual host acessar o db
-            MYSQL_DATABASE: '${DB_DATABASE}'
-            MYSQL_USER: '${DB_USERNAME}'
-            MYSQL_PASSWORD: '${DB_PASSWORD}'
+            DB_HOST: mysql-db
+            DB_PORT: 3306
+            DB_DATABASE: '${DB_DATABASE}'
+            DB_USERNAME: '${DB_USERNAME}'
+            DB_PASSWORD: '${DB_PASSWORD}'
         depends_on:
             - mysql-db
         ports:
