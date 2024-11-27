@@ -26,14 +26,19 @@ services:
         container_name: backend
         restart: unless-stopped
         volumes:
-            - .:/var/www/html/api-/storage
+            - .:/var/www/html/api-rest-laravel-docker/storage
         environment:
             DB_HOST: mysql-db
+            #DB_PORT: 3306
+            #MYSQL_ROOT_HOST: '%'
+            #DB_DATABASE: '${DB_DATABASE}'
+            #DB_USERNAME: '${DB_USERNAME}'
+            #DB_PASSWORD: '${DB_PASSWORD}'
+
             DB_PORT: 3306
-            MYSQL_ROOT_HOST: '%'
-            DB_DATABASE: '${DB_DATABASE}'
-            DB_USERNAME: '${DB_USERNAME}'
-            DB_PASSWORD: '${DB_PASSWORD}'
+            DB_DATABASE: controle_fornecedor
+            DB_USERNAME: root
+            DB_PASSWORD: root
         depends_on:
             - mysql-db
         ports:
