@@ -21,15 +21,16 @@ WORKDIR /var/www/html/api-rest-laravel-docker/
 
 RUN composer install
 
-RUN      \
-    && mkdir -p /var/www/html/api-rest-laravel-docker/framework/sessions/ \
+RUN \
+    mkdir -p /var/www/html/api-rest-laravel-docker/storage/framework/sessions/ \
     && mkdir -p /var/www/html/api-rest-laravel-docker/storage/framework/views/ \
     && mkdir -p /var/www/html/api-rest-laravel-docker/storage/framework/cache/ \
     && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/logs/ \
-    && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/framework/sessions/ \
+    && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/sessions/ \
     && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/views/ \
-    && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage \
-    && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/cache/
+    && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/cache/ \
+    && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage
+
 
 RUN cp .env.example .env
 RUN php artisan key:generate
