@@ -24,7 +24,7 @@ services:
         container_name: backend
         restart: unless-stopped
         volumes:
-            - .:/var/www/html/teste-dev-php/storage
+            - .:/var/www/html/api-rest-laravel-docker/storage
         environment:
             DB_HOST: mysql-db
             DB_PORT: 3306

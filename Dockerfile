@@ -12,22 +12,22 @@ RUN apt-get update && \
 
 RUN docker-php-ext-install pdo_mysql zip exif pcntl bcmath gd
 RUN a2enmod rewrite
-RUN sed -i 's!/var/www/html!/var/www/html/teste-dev-php/public!g' /etc/apache2/sites-available/000-default.conf
+RUN sed -i 's!/var/www/html!/var/www/html/api-rest-laravel-docker/public!g' /etc/apache2/sites-available/000-default.conf
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-COPY . /var/www/html/teste-dev-php/
-WORKDIR /var/www/html/teste-dev-php/
+COPY . /var/www/html/api-rest-laravel-docker/
+WORKDIR /var/www/html/api-rest-laravel-docker/
 
 RUN composer install
 
-RUN mkdir -p /var/www/html/teste-dev-php/storage/logs/ \
-    && mkdir -p /var/www/html/teste-dev-php/framework/sessions/ \
-    && mkdir -p /var/www/html/teste-dev-php/storage/framework/views/ \
-    && chown -R www-data:www-data /var/www/html/teste-dev-php/storage/logs/ \
-    && chown -R www-data:www-data /var/www/html/teste-dev-php/framework/sessions/ \
-    && chown -R www-data:www-data /var/www/html/teste-dev-php/storage/framework/views/ \
-    && chown -R www-data:www-data /var/www/html/teste-dev-php/storage
+RUN mkdir -p /var/www/html/api-rest-laravel-docker/storage/logs/ \
+    && mkdir -p /var/www/html/api-rest-laravel-docker/framework/sessions/ \
+    && mkdir -p /var/www/html/api-rest-laravel-docker/storage/framework/views/ \
+    && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/logs/ \
+    && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/framework/sessions/ \
+    && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/views/ \
+    && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage
 
 RUN cp .env.example .env
 RUN php artisan key:generate
