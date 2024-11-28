@@ -20,6 +20,10 @@ COPY . /var/www/html/api-rest-laravel-docker/
 WORKDIR /var/www/html/api-rest-laravel-docker/
 RUN composer install
 
+RUN cp .env.example .env
+RUN php artisan key:generate
+RUN php artisan optimize
+
 RUN mkdir -p /var/www/html/api-rest-laravel-docker/storage/logs/ \
     && mkdir -p /var/www/html/api-rest-laravel-docker/storage/framework/sessions/ \
     && mkdir -p /var/www/html/api-rest-laravel-docker/storage/framework/views/ \
@@ -32,14 +36,6 @@ RUN mkdir -p /var/www/html/api-rest-laravel-docker/storage/logs/ \
     && chmod -R 775 /var/www/html/api-rest-laravel-docker/bootstrap/cache \
     && chown www-data:www-data /var/www/html/api-rest-laravel-docker/storage/logs/laravel.log \
     && chmod 664 /var/www/html/api-rest-laravel-docker/storage/logs/laravel.log
-
-RUN cp .env.example .env
-RUN php artisan key:generate
-RUN php artisan optimize
-
-RUN cp .env.example .env
-RUN php artisan key:generate
-RUN php artisan optimize
 
 EXPOSE 80
 CMD ["apache2-foreground"]
