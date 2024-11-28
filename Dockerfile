@@ -15,7 +15,7 @@ RUN docker-php-ext-install pdo_mysql zip exif pcntl bcmath gd
 RUN a2enmod rewrite
 RUN sed -i 's!/var/www/html!/var/www/html/api-rest-laravel-docker/public!g' /etc/apache2/sites-available/000-default.conf
 
-RUN echo "ServerName www.exemplo.com" >> /etc/apache2/apache2.conf
+RUN echo "ServerName www.exemplo.com" >> /etc/apache2/sites-available/000-default.conf
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
