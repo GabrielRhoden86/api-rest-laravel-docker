@@ -18,7 +18,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 COPY . /var/www/html/api-rest-laravel-docker/
 WORKDIR /var/www/html/api-rest-laravel-docker/
-
 RUN composer install
 
 RUN mkdir -p /var/www/html/api-rest-laravel-docker/storage/logs/ \
