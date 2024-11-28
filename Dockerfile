@@ -1,6 +1,6 @@
 FROM php:8.2.5-apache
 
-RUN apt-get updatRUN \
+RUN apt-get update && \
     apt-get install -y \
     git \
     libzip-dev \
