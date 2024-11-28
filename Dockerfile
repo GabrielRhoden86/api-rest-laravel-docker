@@ -41,12 +41,11 @@ RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/fra
 
 EXPOSE 80
 
-# Copia o script de entrada
+RUN echo "Copiando script de entrada..."
 COPY entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # Define o script de entrada
 ENTRYPOINT ["entrypoint.sh"]
-
 
 CMD ["apache2-foreground"]
