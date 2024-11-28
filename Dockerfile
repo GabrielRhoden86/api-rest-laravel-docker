@@ -1,6 +1,6 @@
 FROM php:8.2.5-apache
 
-RUN apt-get update && \
+RUN apt-get updatRUN \
     apt-get install -y \
     git \
     libzip-dev \
@@ -24,18 +24,19 @@ RUN cp .env.example .env
 RUN php artisan key:generate
 RUN php artisan optimize
 
-RUN mkdir -p /var/www/html/api-rest-laravel-docker/storage/logs/ \
-    && mkdir -p /var/www/html/api-rest-laravel-docker/storage/framework/sessions/ \
-    && mkdir -p /var/www/html/api-rest-laravel-docker/storage/framework/views/ \
-    && mkdir -p /var/www/html/api-rest-laravel-docker/bootstrap/cache \
-    && mkdir -p /var/www/html/api-rest-laravel-docker/storage/framework/cache/data \
-    && touch /var/www/html/api-rest-laravel-docker/storage/logs/laravel.log \
-    && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage \
-    && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/bootstrap/cache \
-    && chmod -R 775 /var/www/html/api-rest-laravel-docker/storage \
-    && chmod -R 775 /var/www/html/api-rest-laravel-docker/bootstrap/cache \
-    && chown www-data:www-data /var/www/html/api-rest-laravel-docker/storage/logs/laravel.log \
-    && chmod 664 /var/www/html/api-rest-laravel-docker/storage/logs/laravel.log
+RUN mkdir -p /var/www/html/api-rest-laravel-docker/storage/logs/
+RUN mkdir -p /var/www/html/api-rest-laravel-docker/storage/framework/sessions/
+RUN mkdir -p /var/www/html/api-rest-laravel-docker/storage/framework/views/
+RUN mkdir -p /var/www/html/api-rest-laravel-docker/bootstrap/cache
+RUN mkdir -p /var/www/html/api-rest-laravel-docker/storage/framework/cache/data
+RUN touch /var/www/html/api-rest-laravel-docker/storage/logs/laravel.log
+RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage
+RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/bootstrap/cache
+RUN chmod -R 775 /var/www/html/api-rest-laravel-docker/storage
+RUN chmod -R 775 /var/www/html/api-rest-laravel-docker/bootstrap/cache
+RUN chown www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/sessions
+RUN chown www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/views
+RUN chown www-data:www-data /var/www/html/api-rest-laravel-docker/storage/logs/laravel.log
 
 EXPOSE 80
 CMD ["apache2-foreground"]
