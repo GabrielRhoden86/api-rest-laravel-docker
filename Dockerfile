@@ -27,18 +27,15 @@ RUN mkdir -p /var/www/html/api-rest-laravel-docker/storage/logs/ \
     && mkdir -p /var/www/html/api-rest-laravel-docker/storage/framework/cache/data \
     && touch /var/www/html/api-rest-laravel-docker/storage/logs/laravel.log \
     && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage \
-    && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/sessions \
-    && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/cache \
     && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/bootstrap/cache \
-    && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/logs \
-    && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/cache \
-    && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/sessions \
-    && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/cache/data \
-    && chown -R www-data:www-data  /var/www/html/api-rest-laravel-docker/storage/framework/views \
     && chmod -R 775 /var/www/html/api-rest-laravel-docker/storage \
     && chmod -R 775 /var/www/html/api-rest-laravel-docker/bootstrap/cache \
-    && chmod -R 775 /var/www/html/api-rest-laravel-docker/storage/framework/cache \
-    && chown www-data:www-data /var/www/html/api-rest-laravel-docker/storage/logs/laravel.log
+    && chown www-data:www-data /var/www/html/api-rest-laravel-docker/storage/logs/laravel.log \
+    && chmod 664 /var/www/html/api-rest-laravel-docker/storage/logs/laravel.log
+
+RUN cp .env.example .env
+RUN php artisan key:generate
+RUN php artisan optimize
 
 RUN cp .env.example .env
 RUN php artisan key:generate
