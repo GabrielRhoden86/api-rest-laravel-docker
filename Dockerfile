@@ -8,7 +8,8 @@ RUN apt-get update && \
     libicu-dev \
     libpq-dev \
     libmagickwand-dev \
-    nano
+    nano \
+    netcat
 
 RUN docker-php-ext-install pdo_mysql zip exif pcntl bcmath gd
 RUN a2enmod rewrite
@@ -39,5 +40,5 @@ RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/fra
 
 EXPOSE 80
 # CMD ["apache2-foreground"]
+# Verificar a conexão com o banco antes de executar as migrações e iniciar o servidor
 CMD ["sh", "-c", "until nc -z db 3306; do echo 'Aguardando o banco de dados...'; sleep 1; done; php artisan migrate --force && php artisan db:seed --force && apache2-foreground"]
-
