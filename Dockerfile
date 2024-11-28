@@ -21,21 +21,20 @@ WORKDIR /var/www/html/api-rest-laravel-docker/
 RUN composer install
 
 RUN mkdir -p /var/www/html/api-rest-laravel-docker/storage/logs/ \
-    && ls -ld /var/www/html/api-rest-laravel-docker/storage/logs/
-RUN mkdir -p /var/www/html/api-rest-laravel-docker/framework/sessions/ \
-    && ls -ld /var/www/html/api-rest-laravel-docker/framework/sessions/
-RUN mkdir -p /var/www/html/api-rest-laravel-docker/storage/framework/views/ \
-    && ls -ld /var/www/html/api-rest-laravel-docker/storage/framework/views/
-RUN mkdir -p /var/www/html/api-rest-laravel-docker/bootstrap/cache \
-    && ls -ld /var/www/html/api-rest-laravel-docker/bootstrap/cache
-RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage \
-    && ls -ld /var/www/html/api-rest-laravel-docker/storage
-RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/bootstrap/cache \
-    && ls -ld /var/www/html/api-rest-laravel-docker/bootstrap/cache
-RUN chmod -R 775 /var/www/html/api-rest-laravel-docker/storage \
-    && ls -ld /var/www/html/api-rest-laravel-docker/storage
-RUN chmod -R 775 /var/www/html/api-rest-laravel-docker/bootstrap/cache \
-    && ls -ld /var/www/html/api-rest-laravel-docker/bootstrap/cache
+    && mkdir -p /var/www/html/api-rest-laravel-docker/framework/sessions/ \
+    && mkdir -p /var/www/html/api-rest-laravel-docker/storage/framework/views/ \
+    && mkdir -p /var/www/html/api-rest-laravel-docker/bootstrap/cache \
+    && mkdir -p /var/www/html/api-rest-laravel-docker/storage/framework/cache/data \
+    && touch /var/www/html/api-rest-laravel-docker/storage/logs/laravel.log \
+    && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage \
+    && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/bootstrap/cache \
+    && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/cache \
+    && chmod -R 775 /var/www/html/api-rest-laravel-docker/storage \
+    && chmod -R 775 /var/www/html/api-rest-laravel-docker/bootstrap/cache \
+    && chmod -R 775 /var/www/html/api-rest-laravel-docker/storage/framework/cache \
+    && chown www-data:www-data /var/www/html/api-rest-laravel-docker/storage/logs/laravel.log
+
+
 
 RUN cp .env.example .env
 RUN php artisan key:generate
