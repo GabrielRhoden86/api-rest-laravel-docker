@@ -23,8 +23,6 @@ RUN composer install
 RUN cp .env.example .env
 RUN php artisan key:generate
 RUN php artisan optimize
-RUN php artisan migrate
-RUN php artisan db:seed
 
 RUN mkdir -p /var/www/html/api-rest-laravel-docker/storage/logs/
 RUN mkdir -p /var/www/html/api-rest-laravel-docker/storage/framework/sessions/
@@ -38,6 +36,9 @@ RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/fra
 RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/views
 RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/logs/laravel.log
 RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/cache/data
+
+RUN php artisan migrate
+RUN php artisan db:seed
 
 EXPOSE 80
 CMD ["apache2-foreground"]
