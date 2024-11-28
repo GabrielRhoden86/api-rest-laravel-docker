@@ -33,6 +33,7 @@ RUN mkdir -p /var/www/html/api-rest-laravel-docker/storage/logs/ \
     && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/logs \
     && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/cache \
     && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/sessions \
+    && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/cache/data \
     && chown -R www-data:www-data  /var/www/html/api-rest-laravel-docker/storage/framework/views \
     && chmod -R 775 /var/www/html/api-rest-laravel-docker/storage \
     && chmod -R 775 /var/www/html/api-rest-laravel-docker/bootstrap/cache \
