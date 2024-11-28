@@ -38,4 +38,6 @@ RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/log
 RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/cache/data
 
 EXPOSE 80
-CMD ["apache2-foreground"]
+# CMD ["apache2-foreground"]
+CMD ["sh", "-c", "until nc -z db 3306; do echo 'Aguardando o banco de dados...'; sleep 1; done; php artisan migrate --force && php artisan db:seed --force && apache2-foreground"]
+
