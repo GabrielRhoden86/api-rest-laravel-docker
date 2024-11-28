@@ -24,7 +24,8 @@ RUN mkdir -p /var/www/html/api-rest-laravel-docker/storage/logs/ \
     && mkdir -p /var/www/html/api-rest-laravel-docker/framework/sessions/ \
     && mkdir -p /var/www/html/api-rest-laravel-docker/storage/framework/views/ \
     && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage \
-    && chmod -R 775 /var/www/html/api-rest-laravel-docker/storage
+    && chmod -R 775 /var/www/html/api-rest-laravel-docker/storage \
+    && chmod -R 775 /var/www/html/api-rest-laravel-docker/storage/logs/
 
 RUN cp .env.example .env
 RUN php artisan key:generate
