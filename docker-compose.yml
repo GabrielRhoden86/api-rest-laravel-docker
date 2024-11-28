@@ -4,7 +4,7 @@ services:
         restart: unless-stopped
         container_name: mysql-db
         environment:
-            MYSQL_ROOT_PASSWORD: root
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
             MYSQL_DATABASE: controle_fornecedor
         volumes:
             - ./mysql-data:/var/lib/mysql
