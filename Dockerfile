@@ -28,6 +28,7 @@ RUN mkdir -p /var/www/html/api-rest-laravel-docker/storage/logs/ \
     && touch /var/www/html/api-rest-laravel-docker/storage/logs/laravel.log \
     && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage \
     && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/sessions \
+    && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/cache \
     && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/bootstrap/cache \
     && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/logs \
     && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/cache \

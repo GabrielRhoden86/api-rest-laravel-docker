@@ -10,5 +10,5 @@ Route::middleware(['throttle:60,1'])->group(function () {
     Route::get('/fornecedores', [FornecedorController::class, 'read']);
     Route::patch('/fornecedores/{id}', [FornecedorController::class, 'update']);
     Route::delete('/fornecedores/{id}', [FornecedorController::class, 'deleteItem']);
-    Route::get('/consulta   /{cnpj}', [BuscaCnpjController::class, 'buscaCnpj']);
+    Route::get('/consulta/{cnpj}', [BuscaCnpjController::class, 'buscaCnpj']);
 });
