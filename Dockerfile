@@ -23,6 +23,8 @@ RUN composer install
 RUN cp .env.example .env
 RUN php artisan key:generate
 RUN php artisan optimize
+RUN php artisan migrate
+RUN php artisan db:seed
 
 RUN mkdir -p /var/www/html/api-rest-laravel-docker/storage/logs/
 RUN mkdir -p /var/www/html/api-rest-laravel-docker/storage/framework/sessions/
