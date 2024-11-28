@@ -21,11 +21,21 @@ WORKDIR /var/www/html/api-rest-laravel-docker/
 RUN composer install
 
 RUN mkdir -p /var/www/html/api-rest-laravel-docker/storage/logs/ \
-    && mkdir -p /var/www/html/api-rest-laravel-docker/framework/sessions/ \
-    && mkdir -p /var/www/html/api-rest-laravel-docker/storage/framework/views/ \
-    && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage \
-    && chmod -R 775 /var/www/html/api-rest-laravel-docker/storage \
-    && chmod -R 775 /var/www/html/api-rest-laravel-docker/storage/logs/
+    && ls -ld /var/www/html/api-rest-laravel-docker/storage/logs/
+RUN mkdir -p /var/www/html/api-rest-laravel-docker/framework/sessions/ \
+    && ls -ld /var/www/html/api-rest-laravel-docker/framework/sessions/
+RUN mkdir -p /var/www/html/api-rest-laravel-docker/storage/framework/views/ \
+    && ls -ld /var/www/html/api-rest-laravel-docker/storage/framework/views/
+RUN mkdir -p /var/www/html/api-rest-laravel-docker/bootstrap/cache \
+    && ls -ld /var/www/html/api-rest-laravel-docker/bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage \
+    && ls -ld /var/www/html/api-rest-laravel-docker/storage
+RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/bootstrap/cache \
+    && ls -ld /var/www/html/api-rest-laravel-docker/bootstrap/cache
+RUN chmod -R 775 /var/www/html/api-rest-laravel-docker/storage \
+    && ls -ld /var/www/html/api-rest-laravel-docker/storage
+RUN chmod -R 775 /var/www/html/api-rest-laravel-docker/bootstrap/cache \
+    && ls -ld /var/www/html/api-rest-laravel-docker/bootstrap/cache
 
 RUN cp .env.example .env
 RUN php artisan key:generate
