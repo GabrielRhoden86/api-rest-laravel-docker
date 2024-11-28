@@ -29,15 +29,14 @@ services:
             - .:/var/www/html/api-rest-laravel-docker
         environment:
             DB_HOST: mysql-db
-            #DB_PORT: 3306
-            #MYSQL_ROOT_HOST: '%'
-            #DB_DATABASE: '${DB_DATABASE}'
-            #DB_USERNAME: '${DB_USERNAME}'
-            #DB_PASSWORD: '${DB_PASSWORD}'
-            DB_PORT: 3306  # port mysql contêiner
-            DB_DATABASE: controle_fornecedor
-            DB_USERNAME: root
-            DB_PASSWORD: root
+            DB_PORT: 3306
+            DB_DATABASE: '${DB_DATABASE}'
+            DB_USERNAME: '${DB_USERNAME}'
+            DB_PASSWORD: '${DB_PASSWORD}'
+            # DB_PORT: 3306  # port mysql contêiner
+            # DB_DATABASE: controle_fornecedor
+            # DB_USERNAME: root
+            # DB_PASSWORD: root
         depends_on:
             - mysql-db
         ports:

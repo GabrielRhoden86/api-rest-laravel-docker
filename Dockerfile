@@ -47,5 +47,4 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # Define o script de entrada
 ENTRYPOINT ["entrypoint.sh"]
-
 CMD ["apache2-foreground"]
