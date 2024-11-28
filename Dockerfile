@@ -37,10 +37,5 @@ RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/fra
 RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/logs/laravel.log
 RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/cache/data
 
-RUN php artisan migrate
-RUN php artisan db:seed
-
 EXPOSE 80
-
-# Executar migrações e seeds após o banco estar disponível
-CMD ["sh", "-c", "php artisan migrate && php artisan db:seed && apache2-foreground"]
+CMD ["apache2-foreground"]
