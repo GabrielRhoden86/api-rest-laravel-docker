@@ -32,11 +32,9 @@ RUN mkdir -p /var/www/html/api-rest-laravel-docker/storage/framework/cache/data
 RUN touch /var/www/html/api-rest-laravel-docker/storage/logs/laravel.log
 RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage
 RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/bootstrap/cache
-RUN chmod -R 775 /var/www/html/api-rest-laravel-docker/storage
-RUN chmod -R 775 /var/www/html/api-rest-laravel-docker/bootstrap/cache
-RUN chown www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/sessions
-RUN chown www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/views
-RUN chown www-data:www-data /var/www/html/api-rest-laravel-docker/storage/logs/laravel.log
+RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/sessions
+RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/views
+RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/logs/laravel.log
 RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/cache/data
 
 EXPOSE 80
