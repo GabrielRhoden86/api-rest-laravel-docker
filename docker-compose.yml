@@ -5,7 +5,7 @@ services:
         container_name: mysql-db
         environment:
             MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
-            MYSQL_DATABASE: controle_fornecedor
+            MYSQL_DATABASE: '${DB_DATABASE}'
         volumes:
             - ./mysql-data:/var/lib/mysql
         ports:
@@ -33,10 +33,6 @@ services:
             DB_DATABASE: '${DB_DATABASE}'
             DB_USERNAME: '${DB_USERNAME}'
             DB_PASSWORD: '${DB_PASSWORD}'
-            # DB_PORT: 3306  # port mysql contêiner
-            # DB_DATABASE: controle_fornecedor
-            # DB_USERNAME: root
-            # DB_PASSWORD: root
         depends_on:
             - mysql-db
         ports:
