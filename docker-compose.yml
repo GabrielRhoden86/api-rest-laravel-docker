@@ -34,7 +34,7 @@ services:
             #DB_DATABASE: '${DB_DATABASE}'
             #DB_USERNAME: '${DB_USERNAME}'
             #DB_PASSWORD: '${DB_PASSWORD}'
-            DB_PORT: 3306
+            DB_PORT: 3306  # port mysql contêiner
             DB_DATABASE: controle_fornecedor
             DB_USERNAME: root
             DB_PASSWORD: root
