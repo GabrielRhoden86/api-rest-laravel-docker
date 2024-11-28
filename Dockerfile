@@ -24,6 +24,7 @@ RUN composer install
 RUN cp .env.example .env
 RUN php artisan key:generate
 RUN php artisan optimize
+RUN php artisan cache:clear
 
 RUN mkdir -p /var/www/html/api-rest-laravel-docker/storage/logs/
 RUN mkdir -p /var/www/html/api-rest-laravel-docker/storage/framework/sessions/
@@ -39,4 +40,13 @@ RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/log
 RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/cache/data
 
 EXPOSE 80
+
+# Copia o script de entrada
+COPY entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# Define o script de entrada
+ENTRYPOINT ["entrypoint.sh"]
+
+
 CMD ["apache2-foreground"]
