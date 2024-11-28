@@ -20,7 +20,12 @@ COPY . /var/www/html/api-rest-laravel-docker/
 WORKDIR /var/www/html/api-rest-laravel-docker/
 RUN composer install
 
-RUN  touch /var/www/html/api-rest-laravel-docker/storage/logs/laravel.log \
+RUN mkdir -p /var/www/html/api-rest-laravel-docker/storage/logs/ \
+    && mkdir -p /var/www/html/api-rest-laravel-docker/storage/framework/sessions/ \
+    && mkdir -p /var/www/html/api-rest-laravel-docker/storage/framework/views/ \
+    && mkdir -p /var/www/html/api-rest-laravel-docker/bootstrap/cache \
+    && mkdir -p /var/www/html/api-rest-laravel-docker/storage/framework/cache/data \
+    && touch /var/www/html/api-rest-laravel-docker/storage/logs/laravel.log \
     && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage \
     && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/sessions \
     && chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/bootstrap/cache \
