@@ -14,4 +14,5 @@ php artisan config:clear
 
 php artisan migrate --force
 php artisan db:seed --force
+composer update
 php artisan up
