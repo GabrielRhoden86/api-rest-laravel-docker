@@ -176,7 +176,7 @@ Route::middleware(['throttle:60,1'])->group(function () {
 
 <p>Para realizar os testes por método:</p>
 <pre><code>
-  php artisan test --filter "FornecedorRepositoryTest::test_get_all" --testsuite=Unit
+  php artisan test --filter "FornecedorRepositoryTest::test_remove" --testsuite=Unit
 </code></pre>
 
 <small>* No método 'test_remove', é necessário ajustar o ID em cada teste de exclusão para evitar erros devido à inexistência do ID. </small>

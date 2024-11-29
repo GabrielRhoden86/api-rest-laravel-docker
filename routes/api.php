@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\BuscaCnpjController;
