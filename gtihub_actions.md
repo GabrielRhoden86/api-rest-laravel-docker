@@ -60,3 +60,6 @@ sudo mysql -u root -p
 execute para liberar acesso:
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '';
 FLUSH PRIVILEGES;
+
+## ____________________________________PARTE 2 CONFIGURANDO WORKFLOWS GITHUB ACTIONS________________________________
+1 - criar um novo arquivo chamado .github/workflows/deploy.yml
