@@ -13,7 +13,5 @@ php artisan optimize
 php artisan config:clear
 
 php artisan migrate --force
-
-composer update
 php artisan db:seed --force
 php artisan up
