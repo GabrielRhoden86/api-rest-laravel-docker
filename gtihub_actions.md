@@ -5,7 +5,6 @@ echo . > deploy
 ## 2 - implemente as configurações em: 
 .scripts/deploy.sh
 
-
 ## 4 - execute no servidor iniciar a criação da chave ssh:
 ssh-keygen -t rsa -b 4096 -C "gabrielrhodden@gmail.com"
 
@@ -42,6 +41,8 @@ add key
 5 - php artisan key:generate
 6 - php artisan optimize
 
+## confirme que a pasta script esta no scrips subiu corretamente
+ls -la .scripts
 
 ## execute no servidor para autorizar a permissão de acesso ao arquivo
 chmod +x .scripts/deploy.sh

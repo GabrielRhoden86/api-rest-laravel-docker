@@ -12,6 +12,6 @@ composer install --no-dev --no-interaction --prefer-dist
 php artisan optimize
 php artisan config:clear
 
-php artisan migrate --force
-php artisan db:seed --force
+# php artisan migrate --force
+# php artisan db:seed --force
 php artisan up
