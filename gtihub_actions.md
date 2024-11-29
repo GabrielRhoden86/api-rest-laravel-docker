@@ -62,4 +62,19 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '';
 FLUSH PRIVILEGES;
 
 ## ____________________________________PARTE 2 CONFIGURANDO WORKFLOWS GITHUB ACTIONS________________________________
-1 - criar um novo arquivo chamado .github/workflows/deploy.yml
+
+## 1 - criar um novo arquivo chamado .github/workflows/deploy.yml
+mkdir .github
+mkdir .github\workflows
+echo . > .github\workflows\deploy.yml
+
+## 2 - implemente o código: .github\workflows\deploy.yml
+
+## 3 - agora vamos criar as variaveis de ambiente que configuramos no github, vá em:
+/settings/secrets/actions
+
+## 4  - click em Repository secrets:
+USERNAME: root
+HOST: 172.21.66.8
+PORT: 22
+KEY: (coloque a chave ssh privada aqui)  cat ~/ .ssh/id_rsa

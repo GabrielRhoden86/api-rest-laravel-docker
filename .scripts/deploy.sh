@@ -7,11 +7,11 @@
 git pull origin main
 
 # instalar composer
-composer install --no-interaction --prefer-dist
+composer install --no-interaction --prefer-dist # usar somente no deploy inicial
 
 php artisan optimize
 php artisan config:clear
 
-php artisan migrate --force
-php artisan db:seed --force
+php artisan migrate --force ## usar somente no deploy inicial
+php artisan db:seed --force ## usar somente no deploy inicial
 php artisan up
