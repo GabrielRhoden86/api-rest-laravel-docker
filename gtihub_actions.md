@@ -8,29 +8,29 @@ echo . > deploy
 ## 4 - execute no servidor iniciar a criação da chave ssh:
 ssh-keygen -t rsa -b 4096 -C "gabrielrhodden@gmail.com"
 
-## inseira o caminho onde quer que a chave seja salva:
+## 5 - inseira o caminho onde quer que a chave seja salva:
                                                                             (caminho)
 Enter file in which to save the key (/home/gabriel_rhoden/.ssh/id_rsa): /home/gabriel_rhoden/.ssh/id_rsa
 
-## nao precisa escolher senha para o proximo passo é so press enter
+## 6 - nao precisa escolher senha para o proximo passo é so press enter
 Enter passphrase (empty for no passphrase):
 
-## 4.1 - Iniciar o agente SSH:
+## 7.1 - Iniciar o agente SSH:
 eval "$(ssh-agent -s)"
 
-## 4.2 - Iniciar o agente SSH:
+## 7.2 - Iniciar o agente SSH:
 ssh-add ~/.ssh/id_rsa
 
-## 4.3 - Adicionar a chave pública ao arquivo authorized_keys
+## 7.3 - Adicionar a chave pública ao arquivo authorized_keys
 cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 
-## 4.4 - copie a chave publica
+## 7.4 - copie a chave publica
 cat ~/.ssh/id_rsa.pub
 
-## 5 No github em:
+## 8 No github em:
 settings > Deploy keys > Add deploys Keys: de um nome para chave ex PROD_SERVER
 
-## 6 - cole a chave criada em key e press:
+## 9 - cole a chave criada em key e press:
 add key
 
 ## IMPORTANTE O PRIMEIRO DEPLOY FAÇA 'MANUALMENTE' NO SERVIDOR:
@@ -41,13 +41,22 @@ add key
 5 - php artisan key:generate
 6 - php artisan optimize
 
-## confirme que a pasta script esta no scrips subiu corretamente
+## 1 - confirme que a pasta script esta no scrips subiu corretamente
 ls -la .scripts
 
-## execute no servidor para autorizar a permissão de acesso ao arquivo
+## 2 - execute no servidor para autorizar a permissão de acesso ao arquivo
 chmod +x .scripts/deploy.sh
 
 ## EXECUTE NO SERVIDOR './':
-./scripts/deploy.sh
+./.scripts/deploy.sh
+_______________________________
+Obs: em caso de erro no git pull
+git reset --hard HEAD
+git pull
 
+configure o o db caso necessário:
+sudo mysql -u root -p
 
+execute para liberar acesso:
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '';
+FLUSH PRIVILEGES;
