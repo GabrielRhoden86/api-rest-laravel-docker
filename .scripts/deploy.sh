@@ -7,7 +7,7 @@
 git pull origin main
 
 # instalar composer
-composer install --no-dev --no-interaction --prefer-dist
+composer install --no-interaction --prefer-dist
 
 php artisan optimize
 php artisan config:clear
