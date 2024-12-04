@@ -10,6 +10,7 @@ on:
 
 jobs:
   deploy:
+    #runs-on: ubuntu-latest
     runs-on: windows-latest
 
     steps:
@@ -17,27 +18,14 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSHKEY }}
+
+    - name: Fix SSH Key Permissions
       run: |
-        # Definindo o diretório temporário corretamente para Windows
-        $tempDir = "C:\temp"
-        if (-not (Test-Path $tempDir)) {
-          New-Item -Path $tempDir -ItemType Directory
-        }
-
-        # Criando o diretório .ssh se não existir
-        mkdir -p C:\Users\runneradmin\.ssh
-
-        # Copiando a chave SSH diretamente do GitHub Secrets para o arquivo id_rsa
-        $env:SSH_PRIVATE_KEY = "${{ secrets.SSH_PRIVATE_KEY }}"
-        Set-Content -Path "C:\Users\runneradmin\.ssh\id_rsa" -Value $env:SSH_PRIVATE_KEY
-        chmod 600 C:\Users\runneradmin\.ssh\id_rsa
-
-        # Garantindo que o arquivo known_hosts exista
-        touch C:\Users\runneradmin\.ssh\known_hosts
-
-        # Substitua pelo IP real ou variável
-        $EC2_PUBLIC_IP = "${{ secrets.EC2_PUBLIC_IP }}"  # Substitua com o IP real
-        ssh-keyscan -H $EC2_PUBLIC_IP | Out-File -Append -FilePath C:\Users\runneradmin\.ssh\known_hosts
+        echo "${{ secrets.SSHKEY }}" > key
+        chmod 600 key
 
     - name: Run deployment script on WSL
       run: |
