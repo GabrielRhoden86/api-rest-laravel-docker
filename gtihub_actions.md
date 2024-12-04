@@ -77,4 +77,6 @@ echo . > .github\workflows\deploy.yml
 USERNAME: root
 HOST: 172.21.66.8
 PORT: 22
-KEY: (coloque a chave ssh privada aqui)  cat ~/ .ssh/id_rsa
+KEY: (coloque a chave ssh privada aqui)  execute:cat ~/.ssh/id_rsa
+
+

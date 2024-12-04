@@ -5,6 +5,7 @@ on:
     branches:
       - main
   pull_request:
+
     branches:
       - main
 jobs:
@@ -13,13 +14,13 @@ jobs:
 
     steps:
     - name: Checkout code
-
       uses: actions/checkout@v2
 
     - name: Set up SSH
       uses: webfactory/ssh-agent@v0.5.3
       with:
         #variaveis de ambiente
+        host: ${{ secrets.HOST }}
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
         username: ${{ secrets.USERNAME }}
         port:  ${{ secrets.PORT }}
