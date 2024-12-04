@@ -8,6 +8,10 @@ echo . > deploy
 ## 4 - execute no servidor iniciar a criação da chave ssh:
 ssh-keygen -t rsa -b 4096 -C "gabrielrhodden@gmail.com"
 
+para wsl:
+ssh-keygen -t rsa -b 4096 -m PEM -C "gabrielrhodden@gmail.com"
+
+
 ## 5 - inseira o caminho onde quer que a chave seja salva:
                                                                             (caminho)
 Enter file in which to save the key (/home/gabriel_rhoden/.ssh/id_rsa): /home/gabriel_rhoden/.ssh/id_rsa

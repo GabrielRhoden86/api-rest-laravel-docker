@@ -10,6 +10,7 @@ on:
 
 jobs:
   deploy:
+    #runs-on: ubuntu-latest
     runs-on: windows-latest
 
     steps:
@@ -21,8 +22,11 @@ jobs:
       with:
         ssh-private-key: ${{ secrets.SSHKEY }}
 
-    - name: Run deployment script
+    - name: Fix SSH Key Permissions
       run: |
-        cd /var/www/html/api-rest-laravel-docker
-        ./.scripts/deploy.sh
-      shell: wsl-bash
+        echo "${{ secrets.SSHKEY }}" > key
+        chmod 600 key
+
+    - name: Run deployment script on WSL
+      run: |
+        wsl bash -c "cd /var/www/html/api-rest-laravel-docker && ./.scripts/deploy.sh"
