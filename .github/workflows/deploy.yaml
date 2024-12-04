@@ -20,7 +20,7 @@ jobs:
       run: |
         echo "${{ secrets.SSHKEY }}" | tr -d '\r' > key
         chmod 600 key
-        eval $(ssh-agent -s)
+        eval "$(ssh-agent -s)"
         ssh-add key
 
     - name: Run deployment script on WSL
