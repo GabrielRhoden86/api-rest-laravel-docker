@@ -24,20 +24,16 @@ jobs:
           New-Item -Path $tempDir -ItemType Directory
         }
 
-        # Decodificando e salvando a chave SSH no diretório temporário
-        echo "${{ secrets.SSHKEY_BASE64 }}" | base64 -d > $tempDir\id_rsa
-        chmod 600 $tempDir\id_rsa
-
-        # Iniciando o ssh-agent no PowerShell
-        Start-Service ssh-agent
-
-        # Adicionando a chave SSH ao agente
-        ssh-add $tempDir\id_rsa
-
+        # Criando o diretório .ssh se não existir
         mkdir -p C:\Users\runneradmin\.ssh
-        touch C:\Users\runneradmin\.ssh\config
+
+        # Copiando a chave SSH diretamente do GitHub Secrets para o arquivo id_rsa
+        $env:SSH_PRIVATE_KEY = "${{ secrets.SSH_PRIVATE_KEY }}"
+        Set-Content -Path "C:\Users\runneradmin\.ssh\id_rsa" -Value $env:SSH_PRIVATE_KEY
+        chmod 600 C:\Users\runneradmin\.ssh\id_rsa
+
+        # Garantindo que o arquivo known_hosts exista
         touch C:\Users\runneradmin\.ssh\known_hosts
-        chmod -R 400 C:\Users\runneradmin\.ssh
 
         # Substitua pelo IP real ou variável
         $EC2_PUBLIC_IP = "${{ secrets.EC2_PUBLIC_IP }}"  # Substitua com o IP real
