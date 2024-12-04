@@ -1,3 +1,13 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
 jobs:
   deploy:
     runs-on: windows-latest
@@ -10,3 +20,16 @@ jobs:
       run: |
         echo "${{ secrets.SSHKEY_BASE64 }}" | base64 -d > /tmp/id_rsa
         chmod 600 /tmp/id_rsa
+        eval $(ssh-agent -s)
+        ssh-add /tmp/id_rsa
+        mkdir -p ~/.ssh
+        touch ~/.ssh/config
+        touch ~/.ssh/known_hosts
+        chmod -R 400 ~/.ssh
+        # Substitua pelo IP real ou variável
+        $EC2_PUBLIC_IP = "your.ec2.public.ip"  # Substitua com o IP real
+        ssh-keyscan -H $EC2_PUBLIC_IP | Out-File -Append -FilePath ~/.ssh/known_hosts
+
+    - name: Run deployment script on WSL
+      run: |
+        wsl bash -c "cd /var/www/html/api-rest-laravel-docker && ./.scripts/deploy.sh"
