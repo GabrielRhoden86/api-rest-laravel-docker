@@ -29,7 +29,7 @@ jobs:
         chmod 600 $tempDir\id_rsa
 
         # Iniciando o ssh-agent no PowerShell
-        Start-Process ssh-agent -ArgumentList "start" -NoNewWindow -Wait
+        Start-Service ssh-agent
 
         # Adicionando a chave SSH ao agente
         ssh-add $tempDir\id_rsa
@@ -40,7 +40,7 @@ jobs:
         chmod -R 400 C:\Users\runneradmin\.ssh
 
         # Substitua pelo IP real ou variável
-        $EC2_PUBLIC_IP = "your.ec2.public.ip"  # Substitua com o IP real
+        $EC2_PUBLIC_IP = "${{ secrets.EC2_PUBLIC_IP }}"  # Substitua com o IP real
         ssh-keyscan -H $EC2_PUBLIC_IP | Out-File -Append -FilePath C:\Users\runneradmin\.ssh\known_hosts
 
     - name: Run deployment script on WSL
