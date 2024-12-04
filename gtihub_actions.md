@@ -10,7 +10,7 @@ ssh-keygen -t rsa -b 4096 -C "gabrielrhodden@gmail.com"
 
 para wsl:
 ssh-keygen -t rsa -b 4096 -m PEM -C "gabrielrhodden@gmail.com"
-
+ou
 ssh-keygen -t ed25519 -C "gabrielrhodden@gmail.com"
 
 
