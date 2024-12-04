@@ -17,15 +17,16 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Set up SSH
-      uses: webfactory/ssh-agent@v0.5.3
-      with:
-        ssh-private-key: ${{ secrets.SSHKEY }}
-
-    - name: Fix SSH Key Permissions
       run: |
-        echo "${{ secrets.SSHKEY }}" | tr -d '\r' > key
-        chmod 600 key
-        ssh-add key
+        echo "${{ secrets.SSHKEY_BASE64 }}" | base64 -d > /tmp/id_rsa
+        chmod 600 /tmp/id_rsa
+        eval $(ssh-agent -s)
+        ssh-add /tmp/id_rsa
+        mkdir -p ~/.ssh
+        touch ~/.ssh/config
+        touch ~/.ssh/known_hosts
+        chmod -R 400 ~/.ssh
+        ssh-keyscan <EC2_PUBLIC_IP> >> ~/.ssh/known_hosts
 
     - name: Run deployment script on WSL
       run: |
