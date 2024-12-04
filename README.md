@@ -195,3 +195,7 @@ Route::middleware(['throttle:60,1'])->group(function () {
 <p>Testa a remoção de um fornecedor. Verifica se o fornecedor foi removido corretamente do banco de dados.</p>
 
 <p>Esses testes garantem que as operações de CRUD (Criar, Ler, Atualizar, Deletar) estão funcionando como esperado.</p>
+
+
+
+--TESTE 01
