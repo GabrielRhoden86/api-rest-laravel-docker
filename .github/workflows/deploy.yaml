@@ -23,7 +23,7 @@ jobs:
 
     - name: Fix SSH Key Permissions
       run: |
-        echo "${{ secrets.SSHKEY }}" | tr -d '\r' > key
+        ssh-add "${{ secrets.SSHKEY }}" | tr -d '\r'> key
         chmod 600 key
         ssh-add key
 
