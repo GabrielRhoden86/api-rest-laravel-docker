@@ -20,7 +20,6 @@ jobs:
       run: |
         echo "${{ secrets.SSHKEY }}" | Out-File -FilePath key -Encoding ascii
         chmod 600 key
-        Start-Service ssh-agent
         ssh-add key
 
     - name: Run deployment script on WSL
