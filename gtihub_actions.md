@@ -11,7 +11,6 @@ ssh-keygen -t rsa -b 4096 -C "gabrielrhodden@gmail.com"
 para wsl:
 ssh-keygen -t rsa -b 4096 -m PEM -C "gabrielrhodden@gmail.com"
 
-
 ## 5 - inseira o caminho onde quer que a chave seja salva: 
                                                                             (caminho)
 Enter file in which to save the key (/home/gabriel_rhoden/.ssh/id_rsa): /home/gabriel_rhoden/.ssh/id_rsa
@@ -83,5 +82,3 @@ HOST: 172.21.66.8
 PORT: 22
 KEY: (coloque a chave ssh privada aqui)  execute:cat ~/.ssh/id_rsa
 
-
-teste02
