@@ -10,7 +10,6 @@ on:
 
 jobs:
   deploy:
-    #runs-on: ubuntu-latest
     runs-on: windows-latest
 
     steps:
@@ -24,8 +23,9 @@ jobs:
 
     - name: Fix SSH Key Permissions
       run: |
-        echo "${{ secrets.SSHKEY }}" > key
+        echo "${{ secrets.SSHKEY }}" | tr -d '\r' > key
         chmod 600 key
+        ssh-add key
 
     - name: Run deployment script on WSL
       run: |
