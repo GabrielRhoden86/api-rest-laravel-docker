@@ -18,9 +18,11 @@ jobs:
 
     - name: Set up SSH
       run: |
-        echo "${{ secrets.SSHKEY }}" | Out-File -FilePath key -Encoding ascii
-        chmod 600 key
-        ssh-add key
+       echo "${{ secrets.SSHKEY }}" | Out-File -FilePath key -Encoding ascii
+       chmod 600 key
+       $env:SSH_AUTH_SOCK = "\\\\.\\pipe\\openssh-ssh-agent"
+       Start-Service -Name ssh-agent
+       ssh-add key
 
     - name: Run deployment script on WSL
       run: |
