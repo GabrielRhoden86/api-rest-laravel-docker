@@ -27,7 +27,11 @@ jobs:
         # Decodificando e salvando a chave SSH no diretório temporário
         echo "${{ secrets.SSHKEY_BASE64 }}" | base64 -d > $tempDir\id_rsa
         chmod 600 $tempDir\id_rsa
-        eval $(ssh-agent -s)
+
+        # Iniciando o ssh-agent no PowerShell
+        Start-Process ssh-agent -ArgumentList "start" -NoNewWindow -Wait
+
+        # Adicionando a chave SSH ao agente
         ssh-add $tempDir\id_rsa
 
         mkdir -p C:\Users\runneradmin\.ssh
