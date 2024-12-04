@@ -18,9 +18,9 @@ jobs:
 
     - name: Set up SSH
       run: |
-        echo "${{ secrets.SSHKEY }}" | tr -d '\r' > key
+        echo "${{ secrets.SSHKEY }}" | Out-File -FilePath key -Encoding ascii
         chmod 600 key
-        eval "$(ssh-agent -s)"
+        Start-Service ssh-agent
         ssh-add key
 
     - name: Run deployment script on WSL
