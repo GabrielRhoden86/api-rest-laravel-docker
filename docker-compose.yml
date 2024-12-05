@@ -36,4 +36,4 @@ services:
         depends_on:
             - mysql-db
         ports:
-            - "8000:82"  # 8000: Porta no host (servidor Linux) 82 Porta no contêiner.
+            - "8000:80"  # 8000: Porta no host (servidor Linux) 82 Porta no contêiner.
