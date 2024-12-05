@@ -4,7 +4,7 @@ php artisan down --message="Sistema em manutenção!"
 echo "Aguardando o banco de dados..."
 timeout=60
 elapsed=0
-while ! nc -z mysql-db 3306; do
+while ! nc -z db 3306; do
   sleep 1
   elapsed=$((elapsed + 1))
   if [ $elapsed -ge $timeout ]; then
