@@ -19,5 +19,7 @@ jobs:
         key: ${{ secrets.SSHKEY }}
         username: ${{secrets.USERNAME}}
         port: ${{secrets.PORT}}
+
+    - name: Run deployment script on WSL
       run: |
         wsl bash -c "cd /var/www/html/api-rest-laravel-docker && ./.scripts/update.sh"
