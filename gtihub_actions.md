@@ -44,6 +44,7 @@ ls -la .scripts
 ## 2 - execute no servidor para autorizar a permissão de acesso ao arquivo
 chmod +x .scripts/deploy.sh
 
+
 ## EXECUTE NO SERVIDOR './':
 ./.scripts/deploy.sh
 _______________________________

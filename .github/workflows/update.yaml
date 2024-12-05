@@ -18,7 +18,9 @@ jobs:
       uses: webfactory/ssh-agent@v0.5.3
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY}}
-
     - name: Run deployment script on Linux
-      run: cd /var/www/html/api-rest-laravel-docker
+      run: |
+        chmod +x /var/www/html/api-rest-laravel-docker
+        cd /var/www/html/api-rest-laravel-docker
+
 
