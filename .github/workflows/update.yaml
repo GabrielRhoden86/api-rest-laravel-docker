@@ -8,7 +8,7 @@ on:
       - main
 jobs:
   deploy:
-    runs-on: centos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -18,7 +18,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Run deployment script on CentOS (corrected user and path)
+      - name: Run deployment script on ubuntu (corrected user and path)
         run: |
-          ssh centos@${{ secrets.HOST }} 'sudo -E sh -c "cd /var/www/html/my-laravel-app && git pull origin main"'
+          ssh ubuntu@${{ secrets.HOST }} 'sudo -E sh -c "cd /var/www/html/api-rest-laravel-docker && git pull origin main"'
 
