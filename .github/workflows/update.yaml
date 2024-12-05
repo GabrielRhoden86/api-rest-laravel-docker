@@ -15,13 +15,17 @@ jobs:
 
       - name: Configure SSH
         uses: webfactory/ssh-agent@v0.5.3
-
-      - name: ansible check with centos:centos7
-        uses: roles-ansible/check-ansible-centos-centos7-action@master
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Run deployment script on ubuntu (corrected user and path)
+      - name: Install Ansible on CentOS 9
+        run: |
+          ssh root@172.16.2.131 << 'EOF'
+          sudo dnf install -y epel-release
+          sudo dnf install -y ansible-core
+          EOF
+
+      - name: Run Ansible Playbook
         run: |
           ssh root@172.16.2.131 'cd /var/www/html/api-rest-laravel-docker && git pull origin main'
 
