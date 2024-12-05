@@ -8,7 +8,6 @@ echo . > deploy
 ## 4 - execute no servidor iniciar a criação da chave ssh:
 ssh-keygen -t rsa -b 4096 -C "gabrielrhodden@gmail.com"
 
-para wsl:
 ssh-keygen -t rsa -b 4096 -m PEM -C "gabrielrhodden@gmail.com"
 ou
 ssh-keygen -t ed25519 -C "gabrielrhodden@gmail.com"
@@ -25,8 +24,7 @@ Enter passphrase (empty for no passphrase):
 ## 7.1 - Iniciar o agente SSH:
 eval "$(ssh-agent -s)"
 
-## 7.2 - Iniciar o agente SSH:
-ssh-add ~/.ssh/id_rsa
+s
 
 ## 7.3 - Adicionar a chave pública ao arquivo authorized_keys
 cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
@@ -86,3 +84,4 @@ HOST: 172.21.66.8
 PORT: 22
 KEY: (coloque a chave ssh privada aqui)  execute:cat ~/.ssh/id_rsa
 
+## TESTE 01
