@@ -6,7 +6,10 @@ echo . > deploy
 .scripts/deploy.sh
 
 ## 4 - execute no servidor iniciar a criação da chave ssh:
-ssh-keygen -t rsa -b 4096 -C "gabrielrhodden@gmail.com"
+ssh-keygen -t rsa -b 4096 -C gabrielrhodden@gmail.com
+
+ssh-keygen -t ed25519 gabrielrhodden@gmail.com
+
 
 ssh-keygen -t rsa -b 4096 -m PEM -C "gabrielrhodden@gmail.com"
 ou
@@ -23,8 +26,6 @@ Enter passphrase (empty for no passphrase):
 
 ## 7.1 - Iniciar o agente SSH:
 eval "$(ssh-agent -s)"
-
-s
 
 ## 7.3 - Adicionar a chave pública ao arquivo authorized_keys
 cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
