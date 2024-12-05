@@ -23,4 +23,4 @@ jobs:
     - name: Run deployment script on Linux
       run: |
         cd /var/www/html/api-rest-laravel-docker
-        ./.scripts/update.sh
+
