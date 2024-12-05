@@ -13,10 +13,14 @@ RUN apt-get update && \
 
 RUN docker-php-ext-install pdo_mysql zip exif pcntl bcmath gd
 RUN a2enmod rewrite
-RUN sed -i 's!/var/www/html!/var/www/html/api-rest-laravel-docker/public!g' /etc/apache2/sites-available/000-default.conf
-
-RUN sed -i '/#ServerName www.example.com/a ServerName www.exemplo86.com' /etc/apache2/sites-available/000-default.conf
-RUN sed -i '$a ServerName www.exemplo86.com' /etc/apache2/apache2.conf
+# apache2
+#RUN sed -i 's!/var/www/html!/var/www/html/api-rest-laravel-docker/public!g' /etc/apache2/sites-available/000-default.conf
+#RUN sed -i '/#ServerName www.example.com/a ServerName www.exemplo86.com' /etc/apache2/sites-available/000-default.conf
+#RUN sed -i '$a ServerName www.exemplo86.com' /etc/apache2/apache2.conf
+# htppd
+RUN sed -i 's!/var/www/html!/var/www/html/api-rest-laravel-docker/public!g' /etc/httpd/sites-available/000-default.conf
+RUN sed -i '/#ServerName www.example.com/a ServerName www.exemplo86.com' /etc/httpd/sites-available/000-default.conf
+RUN sed -i '$a ServerName www.exemplo86.com' /etc/httpd/httpd.conf
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 COPY . /var/www/html/api-rest-laravel-docker/
