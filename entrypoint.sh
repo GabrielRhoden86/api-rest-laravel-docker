@@ -20,4 +20,4 @@ echo "Migrações e seeds concluídas, iniciando Apache"
 
 php artisan up
 
-httpd-foreground
+apache2-foreground
