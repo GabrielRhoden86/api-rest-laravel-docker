@@ -29,6 +29,19 @@ RUN php artisan key:generate
 RUN php artisan optimize
 RUN php artisan cache:clear
 
+RUN mkdir -p /var/www/html/api-rest-laravel-docker/storage/logs/
+RUN mkdir -p /var/www/html/api-rest-laravel-docker/storage/framework/sessions/
+RUN mkdir -p /var/www/html/api-rest-laravel-docker/storage/framework/views/
+RUN mkdir -p /var/www/html/api-rest-laravel-docker/bootstrap/cache
+RUN mkdir -p /var/www/html/api-rest-laravel-docker/storage/framework/cache/data
+RUN touch /var/www/html/api-rest-laravel-docker/storage/logs/laravel.log
+RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage
+RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/sessions
+RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/views
+RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/logs/laravel.log
+RUN chown -R www-data:www-data /var/www/html/api-rest-laravel-docker/storage/framework/cache/data
+
 EXPOSE 80
 
 RUN echo "Copiando script de entrada..."
