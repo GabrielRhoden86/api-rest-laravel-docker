@@ -1,5 +1,4 @@
 name: update
-
 on:
   push:
     branches:
@@ -7,7 +6,6 @@ on:
   pull_request:
     branches:
       - main
-
 jobs:
   deploy:
     runs-on: windows-latest
@@ -16,12 +14,10 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up SSH
-      run: |
-       echo "${{ secrets.SSHKEY }}"
-       chmod 600 key
-       ssh-add key
-
-    - name: Run deployment script on WSL
+      with:
+        host: ${{secrets.HOST}}
+        key: ${{ secrets.SSHKEY }}
+        username: ${{secrets.USERNAME}}
+        port: ${{secrets.PORT}}
       run: |
         wsl bash -c "cd /var/www/html/api-rest-laravel-docker && ./.scripts/update.sh"
