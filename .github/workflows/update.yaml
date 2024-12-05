@@ -6,7 +6,6 @@ on:
   pull_request:
     branches:
       - main
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -21,6 +20,5 @@ jobs:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY}}
 
     - name: Run deployment script on Linux
-      run: |
-        cd /var/www/html/api-rest-laravel-docker
+      run: cd /var/www/html/api-rest-laravel-docker
 

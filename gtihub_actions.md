@@ -6,10 +6,7 @@ echo . > deploy
 .scripts/deploy.sh
 
 ## 4 - execute no servidor iniciar a criação da chave ssh:
-ssh-keygen -t rsa -b 4096 -C "gabrielrhodden@gmail.co
-ssh-keygen -t rsa -b 4096 -m PEM -C "gabrielrhodden@gmail.com"
-ou
-ssh-keygen -t ed25519 -C "gabrielrhodden@gmail.com"
+ssh-keygen -t rsa -b 4096 -C "gabrielrhodden@gmail.com"
 
 ## 5 - inseira o caminho onde quer que a chave seja salva: 
                                                                             (caminho)
