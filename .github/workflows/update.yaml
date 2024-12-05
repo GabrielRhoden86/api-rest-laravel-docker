@@ -9,7 +9,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
@@ -20,6 +20,7 @@ jobs:
       with:
         ssh-private-key: ${{ secrets.SSHKEY }}
 
-    - name: Run deployment script on WSL
+    - name: Run deployment script on Linux
       run: |
-        wsl bash -c "cd /var/www/html/api-rest-laravel-docker && ./.scripts/update.sh"
+        cd /var/www/html/api-rest-laravel-docker
+        ./scripts/update.sh
