@@ -77,7 +77,7 @@ HOST: 172.21.66.8
 PORT: 22
 KEY: (coloque a chave ssh privada aqui)  execute:cat ~/.ssh/id_rsa
 
-## TESTE 04
+## TESTE 05
 
 obs: excluir chaves
 rm -rf ~/.ssh/id_rsa ~/.ssh/id_rsa.pub
