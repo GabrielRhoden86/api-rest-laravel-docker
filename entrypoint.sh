@@ -2,7 +2,7 @@
 set -e
 
 # Coloca o sistema em modo de manutenção
-php artisan down --message="Sistema em manutenção!"
+php artisan down"
 
 echo "Aguardando o banco de dados..."
 timeout=60
