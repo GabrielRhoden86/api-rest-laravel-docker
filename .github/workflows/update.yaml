@@ -15,10 +15,13 @@ jobs:
 
       - name: Configure SSH
         uses: webfactory/ssh-agent@v0.5.3
+
+      - name: ansible check with centos:centos7
+        uses: roles-ansible/check-ansible-centos-centos7-action@master
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Run deployment script on ubuntu (corrected user and path)
         run: |
-          ssh ubuntu@${{ secrets.HOST }} 'sudo -E sh -c "cd /var/www/html/api-rest-laravel-docker && git pull origin main"'
+          ssh root@172.16.2.131 'cd /var/www/html/api-rest-laravel-docker && git pull origin main'
 
