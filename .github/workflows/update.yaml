@@ -8,16 +8,17 @@ on:
       - main
 jobs:
   deploy:
-    runs-on: ubuntu-latest
-
+    runs-on: centos-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Configure SSH
-      uses: webfactory/ssh-agent@v0.5.3
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY}}
-    - name: Run deployment script on Linux
-      run: |
-         ssh ubuntu@${{ secrets.HOST }} 'cd /var/www/html/api-rest-laravel-docker && git pull origin main'
+      - name: Configure SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Run deployment script on CentOS (corrected user and path)
+        run: |
+          ssh centos@${{ secrets.HOST }} 'sudo -E sh -c "cd /var/www/html/my-laravel-app && git pull origin main"'
+
