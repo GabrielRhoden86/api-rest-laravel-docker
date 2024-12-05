@@ -18,7 +18,7 @@ jobs:
 
     - name: Set up SSH
       run: |
-       echo "${{ secrets.SSHKEY }}" | Out-File -FilePath key -Encoding ascii
+       echo "${{ secrets.SSHKEY }}"
        chmod 600 key
        ssh-add key
 
