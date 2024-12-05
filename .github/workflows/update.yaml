@@ -19,6 +19,5 @@ jobs:
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY}}
     - name: Run deployment script on Linux
-      run: ls /var/www/html
-
+      run: ssh -o ${{ secrets.SSH_PRIVATE_KEY }} ' cd /var/www/html/api-rest-laravel-docker && git pull origin main'
 
