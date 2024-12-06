@@ -1,0 +1,15 @@
+stages:
+  - deploy
+
+deploy:
+  stage: deploy
+  script:
+    - apt-get update -y
+    - apt-get install -y openssh-client
+    - mkdir -p ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - ssh-keyscan 172.16.2.131 >> ~/.ssh/known_hosts
+    - ssh root@172.16.2.131 'cd /var/www/html/api-rest-laravel-docker && git pull origin main'
+  only:
+    - main
