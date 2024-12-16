@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.header-content {
+    padding: 10px;
+    text-align: center;
+}
+
+.header-butons{
+    display: flex;
+    justify-content:start;
+    margin-top:1%;
+}
+
+.header-butons button{
+  margin-left: 5px;
+}
+
+.home-content {
+    text-align: center;
+}
+/* Manter o footer ao final da pagina (Início)*/
+main {
+    flex: 1;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Manter o footer ao final da pagina(fim)*/

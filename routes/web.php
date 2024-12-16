@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Inertia\Inertia;
+use App\Http\Controllers\AppController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return phpinfo();
-    // return view('welcome');
+   return view('welcome');
 });
+
+Route::get('/home', function () {
+    return Inertia::render('Home');
+});
+
+
+Route::get('/login',  [AppController::class, 'Auth']);
